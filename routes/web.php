@@ -8,4 +8,4 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::resource('login', LoginController::class)->only(['index', 'store']);
-Route::delete('/logout', [LoginController::class, 'destroy'])->name('logout');
+Route::get('/logout', [LoginController::class, 'destroy'])->name('logout');
