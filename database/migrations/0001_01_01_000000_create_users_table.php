@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->boolean('active');
             $table->boolean('master');
-            $table->rememberToken();
             $table->timestamps();
         });
 
