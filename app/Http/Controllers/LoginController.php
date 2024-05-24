@@ -26,7 +26,7 @@ class LoginController extends Controller
             session(['user' => $user]);
             return redirect()->route('home');
         }
-        return redirect()->route('login.store')->with('message', [
+        return redirect()->route('login.index')->with('message', [
             'type' => 'danger',
             'message' => 'Email ou senha incorretos'
         ]);
