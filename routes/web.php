@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,16 @@ Route::resource('empresas', CompanyController::class)
     'update' => 'company.update',
     'destroy' => 'company.destroy'
 ])->where(['company' => '[0-9]+']);
+
+Route::resource('departamentos', DepartmentController::class)
+->except(['show'])
+->parameters(['departamentos' => 'department'])
+->names([
+    'index' => 'department.index',
+    'create' => 'department.create',
+    'store' => 'department.store',
+    'update' => 'department.update',
+    'destroy' => 'department.destroy',
+    'edit' => 'department.edit'
+]);
+
