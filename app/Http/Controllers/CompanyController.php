@@ -15,21 +15,22 @@ class CompanyController extends Controller
     public function index()
     {
         return view('company.index-company', [
-            'companies' => $this->company->all()
+            'companies' => $this->company->all()->paginate(20)
         ]);
     }
 
     public function create()
     {
         $companiesDealer = DB::connection('dealernet')
-        ->select('SELECT
-        Empresa_Codigo as dealernet_company_id,
-        Empresa_Nome as name,
-        Empresa_NomeFantasia as trade_name,
-        Empresa_Ativo as active,
-        Pessoa_DocIdentificador as cnpj
-        from GrupoRoma_DealernetWF..Empresa emp
-        join GrupoRoma_DealernetWF..Pessoa p on p.Pessoa_Codigo = emp.Empresa_PessoaCod');
+        ->table('GrupoRoma_DealernetWF.dbo.Empresa as emp')
+        ->join('GrupoRoma_DealernetWF.dbo.Pessoa as p', 'p.Pessoa_Codigo', '=', 'emp.Empresa_PessoaCod')
+        ->select(
+            'emp.Empresa_Codigo as dealernet_company_id',
+            'emp.Empresa_Nome as name',
+            'emp.Empresa_NomeFantasia as trade_name',
+            'emp.Empresa_Ativo as active',
+            'p.Pessoa_DocIdentificador as cnpj'
+        )->paginate(20);
         return view('company.create-company', [
             'companiesDealer' => $companiesDealer
         ]);
