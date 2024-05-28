@@ -15,7 +15,7 @@ class CompanyController extends Controller
     public function index()
     {
         return view('company.index-company', [
-            'companies' => $this->company->all()->paginate(20)
+            'companies' => $this->company->paginate(20)
         ]);
     }
 
