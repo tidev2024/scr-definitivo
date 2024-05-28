@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PositionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {
@@ -33,5 +34,16 @@ Route::resource('departamentos', DepartmentController::class)
     'update' => 'department.update',
     'destroy' => 'department.destroy',
     'edit' => 'department.edit'
-]);
+])->where(['department' => '[0-9]+']);
 
+Route::resource('cargos', PositionController::class)
+->except(['show'])
+->parameters(['cargos' => 'position'])
+->names([
+    'index' => 'position.index',
+    'create' => 'position.create',
+    'store' => 'position.store',
+    'update' => 'position.update',
+    'destroy' => 'position.destroy',
+    'edit' => 'position.edit'
+])->where(['position' => '[0-9]+']);
