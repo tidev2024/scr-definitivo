@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
         return redirect()->route('login.index')->with('message', [
             'type' => 'danger',
-            'message' => 'Email ou senha incorretos'
+            'message' => 'Email e/ou senha incorretos!'
         ]);
     }
 

@@ -31,11 +31,11 @@ class LoginStoreRequest extends FormRequest
     {
         return [
             'email' => [
-                'required' => 'Preencha o email',
-                'email' => 'Digite um email válido'
+                'required' => 'Preencha o email!',
+                'email' => 'Digite um email válido!'
             ],
             'password' => [
-                'required' => 'Preencha a senha'
+                'required' => 'Preencha a senha!'
             ]
         ];
     }
