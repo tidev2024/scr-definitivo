@@ -14,6 +14,9 @@ class LoginController extends Controller
 
     public function index()
     {
+        if (!empty(session('user'))) {
+            return redirect()->route('home');
+        }
         return view('login');
     }
 
@@ -34,7 +37,7 @@ class LoginController extends Controller
 
     public function destroy()
     {
-        session()->flush();
+        session()->forget('user');
         return redirect()->route('login.index');
     }
 }
