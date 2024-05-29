@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {
@@ -47,3 +48,14 @@ Route::resource('cargos', PositionController::class)
     'destroy' => 'position.destroy',
     'edit' => 'position.edit'
 ])->where(['position' => '[0-9]+']);
+
+Route::resource('usuarios', UserController::class)
+->except(['show', 'destroy'])
+->parameters(['usuarios' => 'user'])
+->names([
+    'index' => 'user.index',
+    'create' => 'user.create',
+    'store' => 'user.store',
+    'update' => 'user.update',
+    'edit' => 'user.edit'
+])->where(['user' => '[0-9]+']);
