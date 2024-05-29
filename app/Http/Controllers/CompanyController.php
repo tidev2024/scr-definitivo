@@ -41,8 +41,14 @@ class CompanyController extends Controller
         if (empty($request->id)) {
             return redirect()->route('company.create');
         }
+        $parametersUrl = [];
+        preg_match('/page=(\d+)/', url()->previous(), $page);
+        if (count($page) > 1) {
+            $parametersUrl['page'] = $page[1];
+        }
         if ($this->company->where('dealernet_company_id', '=', $request->id)->first()) {
-            return redirect()->route('company.create')->with('message', [
+            return redirect()->route('company.create', $parametersUrl)
+            ->with('message', [
                 'type' => 'warning',
                 'message' => 'Empresa já existe na base de dados'
             ]);
@@ -59,12 +65,14 @@ class CompanyController extends Controller
         where Empresa_Codigo = :id', ['id' => $request->id]);
         if (!empty($companyDealer)) {
             $this->company->create((array)$companyDealer[0]);
-            return redirect()->route('company.create')->with('message', [
+            return redirect()->route('company.create',$parametersUrl)
+            ->with('message', [
                 'type' => 'success',
                 'message'=> 'Empresa importada'
             ]);
         }
-        return redirect()->route('company.create')->with('message', [
+        return redirect()->route('company.create',$parametersUrl)
+        ->with('message', [
             'type' => 'danger',
             'message'=> 'Empresa não encontrada na base da Dealernet'
         ]);
@@ -85,14 +93,21 @@ class CompanyController extends Controller
         ['id' => $id, 'cnpj' => $request->cnpj]);
         $company = $this->company->where('dealernet_company_id', '=', $id)
         ->orWhere('cnpj', '=', $request->cnpj)->first();
+        $parametersUrl = [];
+        preg_match('/page=(\d+)/', url()->previous(), $page);
+        if (count($page) > 1) {
+            $parametersUrl['page'] = $page[1];
+        }
         if (empty($company) || empty($companyDealer)) {
-            return redirect()->route('company.create')->with('message', [
+            return redirect()->route('company.create', $parametersUrl)
+            ->with('message', [
                 'type' => 'danger',
                 'message' => 'Dados da empresa não encontrado para atualizar'
             ]);
         }
         $company->update((array)$companyDealer[0]);
-        return redirect()->route('company.create')->with('message', [
+        return redirect()->route('company.create', $parametersUrl)
+        ->with('message', [
             'type' => 'success',
             'message' => 'Empresa atualizada com sucesso'
         ]);
