@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserIsAuthenticate
@@ -15,7 +16,7 @@ class UserIsAuthenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (empty(session('user'))) {
+        if (!Auth::user()) {
             return redirect()->route('login.index')->with('message', [
                 'type' => 'warning',
                 'message' => 'Faça o login para continuar'
