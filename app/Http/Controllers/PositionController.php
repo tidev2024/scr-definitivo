@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Position;
 use App\Http\Requests\StorePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
+use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
@@ -12,10 +13,14 @@ class PositionController extends Controller
         private Position $position
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
+        $position = $this->position;
+        if ($request->has('filter')) {
+            $position->where('name', 'like', '%'.$request->input('filter').'%');
+        }
         return view('position.index-position', [
-            'positions' => $this->position->paginate(15)
+            'positions' => $position->paginate(20)
         ]);
     }
 

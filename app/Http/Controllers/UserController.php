@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -18,10 +19,15 @@ class UserController extends Controller
         private Position $position
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
+        $user = $this->user;
+        if ($request->has('filter')) {
+            $user->where('name', 'like', '%'.$request->input('filter').'%')
+            ->orWhere('cpf', '=', '%'.$request->input('filter').'%');
+        }
         return view('user.index-user', [
-            'user' => $this->user->paginate(20)
+            'user' => $user->paginate(20)
         ]);
     }
 

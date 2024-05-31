@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepartmentStoreRequest;
 use App\Http\Requests\DepartmentUpdateRequest;
 use App\Models\Department;
+use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
@@ -12,10 +13,14 @@ class DepartmentController extends Controller
         private Department $department
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
+        $department = $this->department;
+        if ($request->has('filter')) {
+            $department->where('name', 'like', '%'.$request->input('filter').'%');
+        }
         return view('department.index-department', [
-            'departments' => $this->department->all()
+            'departments' => $department->paginate(20)
         ]);
     }
 
