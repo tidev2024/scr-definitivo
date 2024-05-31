@@ -64,3 +64,7 @@ Route::middleware(UserIsAuthenticate::class)->group(function() {
         'edit' => 'user.edit'
     ])->where(['user' => '[0-9]+']);
 });
+
+Route::fallback(function () {
+    return redirect()->route('login.index');
+});

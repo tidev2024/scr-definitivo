@@ -12,14 +12,19 @@ class CompanyController extends Controller
         private Company $company
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
+        $company = $this->company;
+        if ($request->has('filter')) {
+            $company->where('cnpj', '=', $request->input('filter'))
+            ->orWhere('name', 'like', '%'.$request->input('filter').'%');
+        }
         return view('company.index-company', [
             'companies' => $this->company->paginate(20)
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $companiesDealer = DB::connection('dealernet')
         ->table('GrupoRoma_DealernetWF.dbo.Empresa as emp')
@@ -30,9 +35,15 @@ class CompanyController extends Controller
             'emp.Empresa_NomeFantasia as trade_name',
             'emp.Empresa_Ativo as active',
             'p.Pessoa_DocIdentificador as cnpj'
-        )->paginate(20);
+        );
+        if ($request->has('filter')) {
+            $companiesDealer
+            ->where('p.Pessoa_DocIdentificador', '=', $request->input('filter'))
+            ->orWhere('emp.Empresa_Nome', 'like', '%'.$request->input('filter').'%');
+        }
         return view('company.create-company', [
-            'companiesDealer' => $companiesDealer
+            'companiesDealer' => $companiesDealer->paginate(20),
+            'filter' => $request->input('filter')
         ]);
     }
 
@@ -42,9 +53,13 @@ class CompanyController extends Controller
             return redirect()->route('company.create');
         }
         $parametersUrl = [];
-        preg_match('/page=(\d+)/', url()->previous(), $page);
+        preg_match('/page=(\d+)&?/', url()->previous(), $page);
         if (count($page) > 1) {
             $parametersUrl['page'] = $page[1];
+        }
+        preg_match('/filter=(.+)&?/', url()->previous(), $filter);
+        if (count($filter) > 1) {
+            $parametersUrl['filter'] = $filter[1];
         }
         if ($this->company->where('dealernet_company_id', '=', $request->id)->first()) {
             return redirect()->route('company.create', $parametersUrl)
@@ -53,6 +68,7 @@ class CompanyController extends Controller
                 'message' => 'Empresa já existe na base de dados'
             ]);
         }
+
         $companyDealer = DB::connection('dealernet')
         ->select('SELECT
         Empresa_Codigo as dealernet_company_id,
@@ -71,6 +87,7 @@ class CompanyController extends Controller
                 'message'=> 'Empresa importada'
             ]);
         }
+
         return redirect()->route('company.create',$parametersUrl)
         ->with('message', [
             'type' => 'danger',
@@ -93,10 +110,15 @@ class CompanyController extends Controller
         ['id' => $id, 'cnpj' => $request->cnpj]);
         $company = $this->company->where('dealernet_company_id', '=', $id)
         ->orWhere('cnpj', '=', $request->cnpj)->first();
+
         $parametersUrl = [];
-        preg_match('/page=(\d+)/', url()->previous(), $page);
-        if (count($page) > 1) {
+        preg_match('/page=(\d+)&?/', url()->previous(), $page);
+        if (count($page) > 1 ) {
             $parametersUrl['page'] = $page[1];
+        }
+        preg_match('/filter=(.+)&?/', url()->previous(), $filter);
+        if (count($filter) > 1) {
+            $parametersUrl['filter'] = $filter[1];
         }
         if (empty($company) || empty($companyDealer)) {
             return redirect()->route('company.create', $parametersUrl)
@@ -105,6 +127,7 @@ class CompanyController extends Controller
                 'message' => 'Dados da empresa não encontrado para atualizar'
             ]);
         }
+
         $company->update((array)$companyDealer[0]);
         return redirect()->route('company.create', $parametersUrl)
         ->with('message', [
