@@ -4,8 +4,10 @@
 <div class="container">
     <div>
         <form action="{{ route('department.index') }}" method="GET">
-            <input type="text" class="form-control" id="filter" name="filter" value="{{ $filter ?? '' }}">
-            <button type="submit" class="btn btn-primary">Pesquisar</button>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="filter" name="filter" value="{{ $filter ?? '' }}">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Pesquisar</button>
+             </div>
         </form>
         <table class="table table-striped">
             <thead class="table-dark">
