@@ -30,7 +30,7 @@ class DepartmentController extends Controller implements HasMiddleware
     {
         $department = $this->department;
         if ($request->has('filter')) {
-            $department->where('name', 'like', '%'.$request->input('filter').'%');
+            $department = $department->where('name', 'like', '%'.$request->input('filter').'%');
         }
         return view('department.index-department', [
             'departments' => $department->paginate(20)

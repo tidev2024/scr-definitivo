@@ -30,7 +30,7 @@ class PositionController extends Controller implements HasMiddleware
     {
         $position = $this->position;
         if ($request->has('filter')) {
-            $position->where('name', 'like', '%'.$request->input('filter').'%');
+            $position = $position->where('name', 'like', '%'.$request->input('filter').'%');
         }
         return view('position.index-position', [
             'positions' => $position->paginate(20)

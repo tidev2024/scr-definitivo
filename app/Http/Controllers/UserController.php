@@ -37,7 +37,7 @@ class UserController extends Controller implements HasMiddleware
     {
         $user = $this->user;
         if ($request->has('filter')) {
-            $user->where('name', 'like', '%'.$request->input('filter').'%')
+            $user = $user->where('name', 'like', '%'.$request->input('filter').'%')
             ->orWhere('cpf', '=', '%'.$request->input('filter').'%');
         }
         return view('user.index-user', [

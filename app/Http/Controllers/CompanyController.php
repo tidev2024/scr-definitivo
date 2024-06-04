@@ -28,7 +28,7 @@ class CompanyController extends Controller implements HasMiddleware
     {
         $company = $this->company;
         if ($request->has('filter')) {
-            $company->where('cnpj', '=', $request->input('filter'))
+            $company = $company->where('cnpj', '=', $request->input('filter'))
             ->orWhere('name', 'like', '%'.$request->input('filter').'%');
         }
         return view('company.index-company', [
@@ -49,7 +49,7 @@ class CompanyController extends Controller implements HasMiddleware
             'p.Pessoa_DocIdentificador as cnpj'
         );
         if ($request->has('filter')) {
-            $companiesDealer
+            $companiesDealer = $companiesDealer
             ->where('p.Pessoa_DocIdentificador', '=', $request->input('filter'))
             ->orWhere('emp.Empresa_Nome', 'like', '%'.$request->input('filter').'%');
         }
