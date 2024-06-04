@@ -1,12 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>DEPARTAMENTO</h1>
-</body>
-</html>
+@extends('default.layout')
+
+@section('content')
+<div class="container">
+    <div>
+        <form action="{{ route('department.index') }}" method="GET">
+            <input type="text" class="form-control" id="filter" name="filter" value="{{ $filter ?? '' }}">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </form>
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Departamento</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($departments as $department)
+                <tr>
+                    <td>{{ $department->name  }}</td>
+                    <td><form  action="{{ route('department.edit', $department->id) }}">
+                           <button class="btn" type="submit"><i class="fas fa-edit"></i></button>
+                    </form></td>
+
+                    <td><form  action="{{ route('department.destroy', $department->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn" type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </form></td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+</div>
+<br>
+<div class="button-container">
+    <a class="btn  btnWhite opacityOnHover" href="{{ route('department.create') }}">Criar</a>
+</div>
+<div class="pagination justify-content-center">
+    {{ $departments->appends(['filter' => request('filter')])->links() }}
+</div>
+</div>
+@endsection
