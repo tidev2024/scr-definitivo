@@ -4,13 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\DB;
 
-class CompanyController extends Controller
+class CompanyController extends Controller implements HasMiddleware
 {
     public function __construct(
         private Company $company
     ) {}
+
+    public static function middleware(): array
+    {
+        return [
+            'userIsAuthenticate',
+            new Middleware('checkPermission:read-company', only: ['index']),
+            new Middleware('checkPermission:create-company', only: ['create', 'store']),
+            new Middleware('checkPermission:update-company', only: ['update']),
+        ];
+    }
 
     public function index(Request $request)
     {

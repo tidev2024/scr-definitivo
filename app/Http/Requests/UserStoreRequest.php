@@ -39,7 +39,9 @@ class UserStoreRequest extends FormRequest
             'master' => ['boolean'],
             'company_id' => ['required', 'exists:companies,id'],
             'department_id' => ['required', 'exists:departments,id'],
-            'position_id' => ['required', 'exists:positions,id']
+            'position_id' => ['required', 'exists:positions,id'],
+            'permission_id' => 'array',
+            'permission_id.*' => ['integer', 'exists:permissions,id']
         ];
     }
 
@@ -62,7 +64,8 @@ class UserStoreRequest extends FormRequest
             ],
             'email' => [
                 'email' => 'Email inválido',
-                'required' => 'Preencha o email'
+                'required' => 'Preencha o email',
+                'unique' => 'Email já cadastrado no sistema'
             ],
             'company_id' => [
                 'required' => 'Selecione uma empresa',
@@ -76,6 +79,9 @@ class UserStoreRequest extends FormRequest
                 'required' => 'Selecione um cargo',
                 'exists' => 'Cargo não encontrado'
             ],
+            'permission_id.array' => 'Erro ao selecionar permissões',
+            'permission_id.*.integer' => 'Erro ao selecionar permissões',
+            'permission_id.*.exists' => 'Erro ao selecionar permissões',
         ];
     }
 }

@@ -6,12 +6,25 @@ use App\Http\Requests\DepartmentStoreRequest;
 use App\Http\Requests\DepartmentUpdateRequest;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class DepartmentController extends Controller
+class DepartmentController extends Controller implements HasMiddleware
 {
     public function __construct(
         private Department $department
     ) {}
+
+    public static function middleware(): array
+    {
+        return [
+            'userIsAuthenticate',
+            new Middleware('checkPermission:read-department', only: ['index']),
+            new Middleware('checkPermission:create-department', only: ['create', 'store']),
+            new Middleware('checkPermission:update-department', only: ['edit', 'update']),
+            new Middleware('checkPermission:delete-department', only: ['destroy']),
+        ];
+    }
 
     public function index(Request $request)
     {

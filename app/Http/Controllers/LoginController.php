@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginStoreRequest;
-use App\Models\User;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LoginController extends Controller implements HasMiddleware
 {
-    public function __construct(
-        private User $user
-    ) {}
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('userIsAuthenticate', only: ['destroy']),
+        ];
+    }
 
     public function index()
     {
-        if (!empty(session('user'))) {
+        if (Auth::user()) {
             return redirect()->route('home');
         }
         return view('login');

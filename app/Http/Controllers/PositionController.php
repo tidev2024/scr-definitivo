@@ -6,12 +6,25 @@ use App\Models\Position;
 use App\Http\Requests\StorePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PositionController extends Controller
+class PositionController extends Controller implements HasMiddleware
 {
     public function __construct(
         private Position $position
     ) {}
+
+    public static function middleware(): array
+    {
+        return [
+            'userIsAuthenticate',
+            new Middleware('checkPermission:read-position', only: ['index']),
+            new Middleware('checkPermission:create-position', only: ['create', 'store']),
+            new Middleware('checkPermission:update-position', only: ['edit', 'update']),
+            new Middleware('checkPermission:delete-position', only: ['destroy']),
+        ];
+    }
 
     public function index(Request $request)
     {

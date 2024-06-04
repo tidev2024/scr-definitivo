@@ -54,6 +54,13 @@
         @error('position_id')
             {{ $message }}
         @enderror
+        @foreach ($permissions as $menu => $permissionValues)
+            <h2>{{ $menu }}</h2>
+            @foreach ($permissionValues as $id => $value)
+                {{ $value }}
+                <input type="checkbox" name="permission_id[]" id="" value="{{ $id }}">
+            @endforeach
+        @endforeach
         <button type="submit">Enviar</button>
     </form>
 </body>
