@@ -17,10 +17,7 @@ class CheckPermission
     public function handle(Request $request, Closure $next, string $permission): Response
     {
         $user = Auth::user();
-        $permissions = array_map(function($permission) {
-            return $permission['name'];
-        }, $user->permissions->toArray());
-        if ($user->master || in_array($permission, $permissions)) {
+        if ($user->master || $user->permissions->contains('name', $permission)) {
             return $next($request);
         }
         return redirect()->route('home')->with('message', [
