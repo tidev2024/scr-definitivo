@@ -37,7 +37,6 @@ class UserStoreRequest extends FormRequest
             'email' => ['email', 'required', 'unique:users,email'],
             'active' => ['boolean'],
             'master' => ['boolean'],
-            'company_id' => ['required', 'exists:companies,id'],
             'department_id' => ['required', 'exists:departments,id'],
             'position_id' => ['required', 'exists:positions,id'],
             'permission_id' => 'array',
@@ -66,10 +65,6 @@ class UserStoreRequest extends FormRequest
                 'email' => 'Email inválido',
                 'required' => 'Preencha o email',
                 'unique' => 'Email já cadastrado no sistema'
-            ],
-            'company_id' => [
-                'required' => 'Selecione uma empresa',
-                'exists' => 'Empresa não encontrada'
             ],
             'department_id' => [
                 'required' => 'Selecione um departamento',
