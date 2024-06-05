@@ -32,7 +32,7 @@ class CompanyController extends Controller implements HasMiddleware
             ->orWhere('name', 'like', '%'.$request->input('filter').'%');
         }
         return view('company.index-company', [
-            'companies' => $this->company->paginate(20)
+            'companies' => $company->paginate(20)
         ]);
     }
 
