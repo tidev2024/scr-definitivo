@@ -25,7 +25,7 @@
                                 </div>
                             @enderror
                             </div>
-                
+
                          <div class="form-group col-md-6">
                             <label for="cpf">CPF</label>
                             <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" id="cpf" placeholder="CPF" value="{{ $user->cpf }}">
@@ -98,16 +98,25 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <h2>Permissions</h2>
-                            @foreach ($permissions as $menu => $permissionValues)
-                                <h5>{{ $menu }}</h5>
-                                @foreach ($permissionValues as $id => $value)
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="permission_id[]" value="{{ $id }}" {{ $user->permissions->contains('id', $id) ? 'checked' : '' }}>
-                                        <label class="form-check-label">{{ $value }}</label>
-                                    </div>
+
+                        <center><h2>Permissões</h2></center>
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                @foreach ($permissions as $menu => $permissionValues)
+                                    <button class="nav-link {{ ($loop->index == 0) ? 'active' : '' }}" id="nav-{{ $menu }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $menu }}" type="button" role="tab" aria-controls="nav-{{ $menu }}" aria-selected="{{ ($loop->index == 0) ? 'true' : 'false' }}">{{ $menu }}</button>
                                 @endforeach
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            @foreach ($permissions as $menu => $permissionValues)
+                                <div class="tab-pane fade {{ ($loop->index == 0) ? 'active show' : '' }}" id="nav-{{ $menu }}" role="tabpanel" aria-labelledby="nav-{{ $menu }}-tab" tabindex="{{ $loop->index }}">
+                                    @foreach ($permissionValues as $id => $value)
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" name="permission_id[]" @checked($user->permissions->contains('id', $id)) value="{{ $id }}">
+                                            <label class="form-check-label">{{ $value }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             @endforeach
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
