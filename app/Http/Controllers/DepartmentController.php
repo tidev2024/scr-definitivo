@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepartmentStoreRequest;
 use App\Http\Requests\DepartmentUpdateRequest;
 use App\Models\Department;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -88,7 +89,15 @@ class DepartmentController extends Controller implements HasMiddleware
                 'message' => 'Departamento não encontrado'
             ]);
         }
-        $department->delete();
+        try {
+            $department->delete();
+        } catch (Exception $e) {
+            return redirect()->route('department.index')->with('message', [
+                'type' => 'warning',
+                'message' => 'Existem usuários vinculados a esse departamento não é possível excluir',
+                'names' => $department->users->pluck('name')
+            ]);
+        }
         return redirect()->route('department.index')->with('message', [
             'type' => 'success',
             'message' => 'Departamento removido'

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Position;
 use App\Http\Requests\StorePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -90,7 +91,15 @@ class PositionController extends Controller implements HasMiddleware
                 'message' => 'Cargo não encontrado'
             ]);
         }
-        $position->delete();
+        try {
+            $position->delete();
+        } catch (Exception $e) {
+            return redirect()->route('position.index')->with('message', [
+                'type' => 'warning',
+                'message' => 'Existem usuários vinculados a esse cargo não é possível excluir',
+                'names' => $position->users->pluck('name')
+            ]);
+        }
         return redirect()->route('position.index')->with('message', [
             'type' => 'success',
             'message' => 'Cargo removido'

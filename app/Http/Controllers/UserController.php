@@ -12,6 +12,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -29,7 +31,7 @@ class UserController extends Controller implements HasMiddleware
             'userIsAuthenticate',
             new Middleware('checkPermission:read-user', only: ['index']),
             new Middleware('checkPermission:create-user', only: ['create', 'store']),
-            new Middleware('checkPermission:update-user', only: ['edit', 'update']),
+            new Middleware('checkPermission:update-user', only: ['edit', 'update', 'resetPassword']),
         ];
     }
 
@@ -97,6 +99,44 @@ class UserController extends Controller implements HasMiddleware
         return redirect()->route('user.index')->with('message', [
             'type' => 'success',
             'message' => 'Usuário atualizado'
+        ]);
+    }
+
+    public function resetPassword(string $id)
+    {
+        $user = $this->user->find($id);
+        if (empty($user)) {
+            return redirect()->route('user.index')->with('message', [
+                'type' => 'danger',
+                'message' => 'Usuário não encontrado'
+            ]);
+        }
+        $user->update(['password' => '12345678']);
+        return redirect()->route('user.index')->with('message', [
+            'type' => 'success',
+            'message' => 'Senha resetada'
+        ]);
+    }
+
+    public function updatePassword()
+    {
+        return view('user.update-password-user');
+    }
+
+    public function storeUpdatedPassword(Request $request)
+    {
+        $user = Auth::user();
+        if(Hash::check($request->input('password'), $user->getAuthPassword())) {
+            $user->password = bcrypt($request->input('new_password'));
+            $user->save();
+            return redirect()->route('home')->with('message', [
+                'type' => 'success',
+                'message' => 'Senha alterada'
+            ]);
+        }
+        return redirect()->route('user.updatePassword')->with('message', [
+            'type' => 'success',
+            'message' => 'Senha digitada não é a mesma que a senha atual'
         ]);
     }
 }

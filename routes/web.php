@@ -60,6 +60,13 @@ Route::resource('usuarios', UserController::class)
     'edit' => 'user.edit'
 ])->where(['user' => '[0-9]+']);
 
+Route::get('/usuarios/{user}/resetar-senha', [UserController::class, 'resetPassword'])
+->where(['user' => '[0-9]+'])->name('user.resetPassword');
+Route::get('/usuarios/alterar-senha', [UserController::class, 'updatePassword'])
+->name('user.updatePassword');
+Route::post('/usuarios/alterar-senha', [UserController::class, 'storeUpdatedPassword'])
+->name('user.storeUpdatedPassword');
+
 Route::fallback(function () {
     return redirect()->route('login.index');
 });
