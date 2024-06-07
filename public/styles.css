@@ -1,174 +1,108 @@
-body {
-   padding-top: 60px; 
+/* Navbar **************************************************************************************************/
+#customNavbar .navbar-nav .dropdown:hover .dropdown-menu {
+   display: block;
 }
-
+#customNavbar .navbar-nav .nav-link::after {
+   display: none !important;
+}
+#customNavbar .nav-link{
+   color:rgb(255, 255, 255);
+}
+#customNavbar .dropdown-menu{
+   background-color: #212529;
+   color:white;
+   position: relative !important;
+   border: none !important;
+}
+#customNavbar .dropdown-item{
+   color:white;
+}
+/* Login ****************************************************************************************************************************************/
+.loginScreen{
+   background: rgb(255,255,255);
+   background: radial-gradient(circle, rgba(255,255,255,1) 5%, rgba(219,214,211,1) 70%);
+}
+.loginCard{
+   border-radius: 30px;
+   height: 75%;
+   width: 120%;
+   max-width: 600px;
+   border:1px solid rgb(255, 255, 255);
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
+}
+/* Tables ************************************************************************************ */
+.cardTableHeader{
+   background-color:rgb(223, 223, 223);
+   color: rgb(0, 0, 0);
+}
+.searchButton{
+   background-color:rgb(230, 77, 7);
+   color:white !important;
+   border:none;
+}
+.pagination .page-item.active .page-link {
+   background-color: rgb(216, 213, 212);
+   color: white;
+   border: 1px solid rgb(216, 213, 212);
+}
+.pagination .page-item:hover .page-link {
+   background-color: rgba(216, 213, 212, 0.486);
+   border: 1px solid rgba(216, 213, 212, 0.171);
+}
+.page-link {
+   color: rgb(0, 0, 0) !important;
+}
+.text-muted {
+   display: none;
+}
+/******************************** BOTÕES *********************************************************/
+.btnOrange{
+   background-color: #ff431d !important;
+   color: white !important;
+   border:none;
+}
+.btnWhite{
+   background-color: rgb(231, 231, 231) !important;
+   color: black;
+   border:1px solid rgb(156, 154, 154);
+}
+.btnGrey{
+   background-color: rgb(196, 194, 194) !important;
+   border:none;
+}
+.backgroundWhite{
+   background-color:rgb(245, 245, 245);
+}
+/******************************* MENSAGEM DE ALERTA **************************************************************************/
+.alert-wrapper {
+   position: relative;
+   z-index: 1000;
+}
+.overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.3);
+   z-index: 1000;
+   display: none;
+}
+.alertMessage {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   font-weight: bold;
+   text-align: center;
+   z-index: 1001;
+   border-radius: 10px;
+}
+.alertMessage.show .alert {
+   display: block;
+}
 .customAlert {
    margin: 10px;
    text-align: center;
    font-weight: bold;
-}
-
-/* Navbar **************************************************************************************************/
-#logoImage {
-   height: 50px;
-   object-fit: contain;
-}
-
-.navbar-brand {
-   position: absolute;
-   left: 0;
-   top: 0;
-}
-
-#loginContainer {
-   border-radius: 10px;
-   border: 5px solid #ffffff;
-   height: 85vh; 
-   box-shadow: rgba(0, 0, 0, 0.4) 5px 5px, rgba(0, 0, 0, 0.3) 10px 10px, rgba(0, 0, 0, 0.2) 15px 15px, rgba(0, 0, 0, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px;
-}
-
-#customNavbar .navbar-nav .dropdown:hover .dropdown-menu {
-   display: block;
-   margin-top: 0;
-}
-
-#customNavbar .navbar-nav .nav-link::after {
-   display: none !important;
-}
-
-.nav-link {
-   display: inline-block;
-   border-radius: 10px;
-   opacity: 0.4;
-   transition: opacity 0.2s ease-in-out !important;
-}
-
-.nav-link:hover {
-   opacity: 1;
-   color: white;
-}
-
-.navbarButtons {
-   cursor: pointer;
-   text-decoration: none;
-   color: white;
-   padding-right: 20px;
-   height: 200%;
-   opacity: 0.25;
-   transition: opacity 0.5s ease-in-out;
-}
-
-.navbarButtons:hover {
-   color: white;
-   opacity: 1;
-}
-
-/* Login ****************************************************************************************************************************************/
-.customForm {
-   background-color: rgba(255, 255, 255, 0.75);
-}
-
-.error-message {
-   background-color: red;
-   color: red;
-}
-
-.menuShadow {
-   box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
-   transition: box-shadow 3s ease-in-out;
-}
-
-.menuShadow:hover {
-   box-shadow: rgba(0, 0, 0, 0.55) 4px 4px 6px;
-}
-
-.menuShadow:focus {
-   box-shadow: rgba(0, 0, 0, 0.55) 4px 4px 6px !important;
-}
-
-#logoBackground {
-   pointer-events: none;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   width: 45%;
-   transform: translate(-50%, -50%);
-   opacity: 0.04;
-}
-
-#loginButton {
-   width: 100%;
-   background-color: #212529;
-   color: white;
-}
-
-#dynamicBackground {
-   background-size: cover;
-   transition: background-image 4s ease-in-out;
-}
-
-#containerDiv { 
-   border-radius: 10px; 
-   transition: box-shadow 0.7s ease; 
-   box-shadow: rgba(0, 0, 0, 0.25) 2.4px 2.4px 3.2px;
-   width: 80%;
-}
-
-#containerDiv:hover {
-   box-shadow: rgba(0, 0, 0, 0.85) 1.4px 4.4px 8.2px;
-}
-
-#mainBody {
-   background-color: rgb(223, 222, 222);
-   transition: background-color 1s ease;
-}
-
-/* Tables *************************************************************************************/
-.customTable {
-   width: 110%;
-   border-collapse: collapse;
-}
-
-.customTable th {
-   background-color: #ff3c0b80;
-   text-align: center;
-}
-
-.customTable tr:nth-child(even) {
-   background-color:  #ffffff;
-}
-
-.customTable tr {
-   text-align: center;
-}
-
-.pagination {
-   margin-top: 10px;
-   text-align: center;
-}
-
-.page-item {
-   display: inline-block;
-   margin-right: 5px;
-   color: red;
-}
-
-.page-link {
-   color: red !important;
-}
-
-.text-muted {
-   display: none;
-}
-
-/* Mobile *************************************************************************************/
-@media only screen and (max-width: 600px) {
-   #logoBackground {
-       width: 120%; 
-       height: auto; 
-   }
-   
-   .customForm {
-       background-color: rgba(255, 255, 255, 0.85) !important;
-   }
 }

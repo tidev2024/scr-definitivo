@@ -1,20 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{ route('position.store') }}" method="post">
-        @csrf
-        <label for="name">Cargo </label>
-        <input type="text" name="name" id="name">
-        <button type="submit">Enviar</button>
-        @error('name')
-            {{ $message }}
-        @enderror
-    </form>
-</body>
-</html>
+@extends('default.layout')
+
+@section('content')
+<div class="container">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body backgroundWhite" style="">
+                        <form action="{{ route('position.store') }}" method="post">
+                            @csrf
+                                <label for="name">Cargo:</label>
+                                <input type="text" name="name" id="name" class="form-control"  placeholder="">
+                            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                                <button type="submit" class="btn btnWhite">Gravar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    @error('name')
+    <div class="overlay">
+        <div class="alert-wrapper alertMessage show">
+            <div class="alert alert-danger fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    @enderror
+
+    @if (session()->has('message'))
+    <div class="overlay">
+        <div class="alert-wrapper alertMessage show">
+            <div class="alert alert-{{ session('message.type') }} alert-dismissible fade show" role="alert">
+                {{ session('message.message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    @endif
+</div>
+@endsection

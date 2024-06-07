@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <h4>Cadastrar Usuário</h4>
                 </div>
-                <div class="card-body">
+                 <div class="card-body">
                     <form action="{{ route('user.store') }}" method="post">
                         @csrf
                         <div class="row">
@@ -25,7 +25,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="cpf">CPF</label>
-                                <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" id="cpf" placeholder="CPF" value="{{ old('cpf') }}">
+                                <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" id="cpf" value="{{ old('cpf') }}">
                                 @error('cpf')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -47,7 +47,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}">
                                 @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -55,20 +55,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row">
-                        <div class="form-group col-md-6">
-                            <input type="checkbox" class="form-check-input" name="active" id="active" value="1" {{ old('active') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="active">Ativo</label>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <input type="checkbox" class="form-check-input" name="master" id="master" value="1" {{ old('master') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="master">Master</label>
-                        </div>
-                      </div>
 
                         <div class="form-group mb-3">
-                            <label for="company_id">Company</label>
+                            <label for="company_id">Empresa</label>
                             <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
                                 <option value="">Selecione uma empresa</option>
                                 @foreach ($companies as $company)
@@ -83,7 +72,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="department_id">Department</label>
+                            <label for="department_id">Departamento</label>
                             <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
                                 <option value="">Selecione um departamento</option>
                                 @foreach ($departments as $department)
@@ -98,7 +87,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="position_id">Position</label>
+                            <label for="position_id">Cargo</label>
                             <select class="form-control @error('position_id') is-invalid @enderror" name="position_id" id="position_id">
                                 <option value="">Posição</option>
                                 @foreach ($positions as $position)
@@ -111,7 +100,17 @@
                                 </div>
                             @enderror
                         </div>
-
+                        <div class="row  mb-3 mt-3">
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" class="form-check-input" name="active" id="active" value="1" {{ old('active') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="active">Ativo</label>
+                            </div>
+    
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" class="form-check-input" name="master" id="master" value="1" {{ old('master') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="master">Master</label>
+                            </div>
+                          </div>
                         <center><h2>Permissões</h2></center>
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -132,12 +131,11 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+                        <button type="submit" class="btn btnOrange w-100">Salvar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection

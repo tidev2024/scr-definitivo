@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit User</h4>
+                    <h4>Editar Usuário</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('user.update', $user->id) }}" method="post">
@@ -17,7 +17,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                            <label for="name">Name</label>
+                            <label for="name">Nome</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Name" value="{{ $user->name }}">
                             @error('name')
                                 <div class="invalid-feedback">
@@ -28,7 +28,7 @@
 
                          <div class="form-group col-md-6">
                             <label for="cpf">CPF</label>
-                            <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" id="cpf" placeholder="CPF" value="{{ $user->cpf }}">
+                            <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" id="cpf" value="{{ $user->cpf }}">
                             @error('cpf')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -38,28 +38,17 @@
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" value="{{ $user->email }}">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ $user->email }}">
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <input type="checkbox" class="form-check-input" name="active" id="active" value="1" {{ $user->active ? 'checked' : '' }}>
-                            <label class="form-check-label" for="active">Active</label>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="checkbox" class="form-check-input" name="master" id="master" value="1" {{ $user->master ? 'checked' : '' }}>
-                            <label class="form-check-label" for="master">Master</label>
-                        </div>
-                    </div>
                         <div class="form-group">
-                            <label for="company_id">Company</label>
+                            <label for="company_id">Empresa</label>
                             <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
-                                <option value="">Select a company</option>
+                                <option value="">Selecione uma empresa</option>
                                 @foreach ($companies as $company)
                                     <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
                                 @endforeach
@@ -71,9 +60,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="department_id">Department</label>
+                            <label for="department_id">Departamento</label>
                             <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
-                                <option value="">Select a department</option>
+                                <option value="">Selecione um departamento</option>
                                 @foreach ($departments as $department)
                                     <option value="{{ $department->id }}" {{ $user->department_id == $department->id ? 'selected' : '' }}>{{ $department->name }}</option>
                                 @endforeach
@@ -85,9 +74,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="position_id">Position</label>
+                            <label for="position_id">Cargo</label>
                             <select class="form-control @error('position_id') is-invalid @enderror" name="position_id" id="position_id">
-                                <option value="">Select a position</option>
+                                <option value="">Selecione um cargo</option>
                                 @foreach ($positions as $position)
                                     <option value="{{ $position->id }}" {{ $user->position_id == $position->id ? 'selected' : '' }}>{{ $position->name }}</option>
                                 @endforeach
@@ -98,7 +87,16 @@
                                 </div>
                             @enderror
                         </div>
-
+                        <div class="row mb-3 mt-3">
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" class="form-check-input" name="active" id="active" value="1" {{ $user->active ? 'checked' : '' }}>
+                                <label class="form-check-label" for="active">Ativo</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" class="form-check-input" name="master" id="master" value="1" {{ $user->master ? 'checked' : '' }}>
+                                <label class="form-check-label" for="master">Master</label>
+                            </div>
+                        </div>
                         <center><h2>Permissões</h2></center>
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -119,7 +117,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btnOrange w-100">Salvar</button>
                     </form>
                 </div>
             </div>
