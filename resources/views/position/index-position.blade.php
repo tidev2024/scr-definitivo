@@ -68,11 +68,11 @@
         <div class="alert-wrapper alertMessage show">
             <div class="alert alert-{{ session('message.type') }} alert-dismissible fade show" role="alert">
                 {{ session('message.message') }}
-                <br>
                 @if (session()->has('message.names'))
-                @foreach (session('message.names') as $name)
-                {{$name}},
-                @endforeach
+                  <br>
+                  @foreach (session('message.names') as $name)
+                     {{$loop->last ? "$name." : "$name,"}}
+                  @endforeach
                 @endif
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>

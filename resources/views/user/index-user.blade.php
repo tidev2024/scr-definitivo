@@ -51,6 +51,16 @@
    <div class="button-container">
       <a class="btn btnOrange" href="{{ route('user.create') }}">Criar</a>
    </div>
+   @if (session()->has('message'))
+      <div class="overlay">
+         <div class="alert-wrapper alertMessage show">
+               <div class="alert alert-{{ session('message.type') }} alert-dismissible fade show" role="alert">
+                  {{ session('message.message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+         </div>
+      </div>
+   @endif
 </div>
 </div>
 @endsection

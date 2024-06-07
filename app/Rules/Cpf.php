@@ -14,10 +14,10 @@ class Cpf implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (preg_match('/(\d)\1{10}/', $value)) {
+        if (preg_match('/(\d)\1{10}/', $value) || strlen($value) != 11) {
             $fail('Cpf inválido');
+            return;
         }
-
         for ($t = 9; $t < 11; $t++) {
             for ($d = 0, $c = 0; $c < $t; $c++) {
                 $d += $value[$c] * (($t + 1) - $c);
@@ -25,6 +25,7 @@ class Cpf implements ValidationRule
             $d = ((10 * $d) % 11) % 10;
             if ($value[$c] != $d) {
                 $fail('Cpf inválido');
+                return;
             }
         }
     }

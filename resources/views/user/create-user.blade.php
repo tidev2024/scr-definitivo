@@ -57,21 +57,6 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="company_id">Empresa</label>
-                            <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
-                                <option value="">Selecione uma empresa</option>
-                                @foreach ($companies as $company)
-                                    <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('company_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
                             <label for="department_id">Departamento</label>
                             <select class="form-control @error('department_id') is-invalid @enderror" name="department_id" id="department_id">
                                 <option value="">Selecione um departamento</option>
@@ -105,7 +90,7 @@
                                 <input type="checkbox" class="form-check-input" name="active" id="active" value="1" {{ old('active') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="active">Ativo</label>
                             </div>
-    
+
                             <div class="form-group col-md-6">
                                 <input type="checkbox" class="form-check-input" name="master" id="master" value="1" {{ old('master') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="master">Master</label>

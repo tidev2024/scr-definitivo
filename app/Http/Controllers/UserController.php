@@ -52,7 +52,6 @@ class UserController extends Controller implements HasMiddleware
         return view('user.create-user', [
             'positions' => $this->position->all(),
             'departments' => $this->department->all(),
-            'companies' => $this->company->all(),
             'permissions' => $this->permission->groupByMenu()
         ]);
     }

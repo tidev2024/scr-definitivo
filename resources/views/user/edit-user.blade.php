@@ -17,13 +17,13 @@
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                            <label for="name">Nome</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Name" value="{{ $user->name }}">
-                            @error('name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                <label for="name">Nome</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ $user->name }}">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                          <div class="form-group col-md-6">
@@ -40,20 +40,6 @@
                             <label for="email">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ $user->email }}">
                             @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="company_id">Empresa</label>
-                            <select class="form-control @error('company_id') is-invalid @enderror" name="company_id" id="company_id">
-                                <option value="">Selecione uma empresa</option>
-                                @foreach ($companies as $company)
-                                    <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('company_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -97,6 +83,10 @@
                                 <label class="form-check-label" for="master">Master</label>
                             </div>
                         </div>
+                        <a href="{{ route('user.resetPassword', $user->id) }}">
+                            Resetar Senha
+                            <i class="fa-solid fa-lock"></i>
+                        </a>
                         <center><h2>Permissões</h2></center>
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -117,7 +107,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button type="submit" class="btn btnOrange w-100">Salvar</button>
+                        <button type="submit" class="btn btnOrange">Salvar</button>
                     </form>
                 </div>
             </div>
