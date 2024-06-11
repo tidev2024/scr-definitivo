@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdatePasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Company;
 use App\Models\Department;
@@ -122,7 +123,7 @@ class UserController extends Controller implements HasMiddleware
         return view('user.update-password-user');
     }
 
-    public function storeUpdatedPassword(Request $request)
+    public function storeUpdatedPassword(UserUpdatePasswordRequest $request)
     {
         $user = Auth::user();
         if(Hash::check($request->input('password'), $user->getAuthPassword())) {
@@ -134,8 +135,8 @@ class UserController extends Controller implements HasMiddleware
             ]);
         }
         return redirect()->route('user.updatePassword')->with('message', [
-            'type' => 'success',
-            'message' => 'Senha digitada não é a mesma que a senha atual'
+            'type' => 'warning',
+            'message' => 'Senha digitada não é a mesma que a senha atual!'
         ]);
     }
 }

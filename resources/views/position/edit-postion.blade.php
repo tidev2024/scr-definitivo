@@ -14,7 +14,7 @@
                             <label for="name">Cargo:</label>
                             <input type="text" name="name" id="name" class="form-control" value="{{ $position->name }}">
                             <div class="d-grid gap-2 col-6 mx-auto mt-4">
-                                <button type="submit" class="btn btnWhite">Enviar</button>
+                                <button type="submit" class="btn btnWhite">Atualizar</button>
                             </div>
                         </form>
                     </div>

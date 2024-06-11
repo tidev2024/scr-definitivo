@@ -1,34 +1,90 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-bg-grey" id="customNavbar">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-       <ul class="navbar-nav mx-auto">
-          <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle" href="#" id="" role="" data-bs-toggle="" aria-expanded="true">Administrador</a>
-             <ul class="dropdown-menu" aria-labelledby="">
-                <li>
-                    <div class="d-flex flex-row">
-                        <div>
-                            <a class="dropdown-item" href="">Cadastros</a>
-                            <ul class="submenu">
-                               <li><a class="dropdown-item" href="{{ route('company.index') }}">Empresas</a></li>
-                               <li><a class="dropdown-item" href="{{ route('department.index') }}">Departamentos</a></li>
-                               <li><a class="dropdown-item" href="{{ route('position.index') }}">Cargos</a></li>
-                               <li><a class="dropdown-item" href="{{ route('user.index') }}">Usuários</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-             </ul>
-          </li>
-       </ul>
-      {{--  <a href="{{ route('logout') }}" id="logout" class="">
-          <i class="fas fa-sign-out-alt fa-lg"></i>
-          </a> --}}
+<nav class="navigation-bar">
+    <div class="navigation-user">
+          <a href="">{{ auth()->user()->name }}</a> |
+          <a href="">Perfil</a> |
+          <a href="{{ route('logout') }}">Logout</a>
     </div>
-{{-- <form class="form-inline ml-auto">
-       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar menu..." aria-label="Search" id="searchInput">
-    </form> --}}
+    <div class="navigation-itens">
+       <div>
+          Grupo Roma
+       </div>
+       <div>
+          <a href="" data-menu="adm">Administrador</a>
+          <a href="" data-menu="chad">Athus</a>
+          <a href="" data-menu="julin">é</a>
+          <a href="" data-menu="julin">Gay</a>
+       </div>
+       <div></div>
+    </div>
+    <div class="navigation-itens-drop">
+       <div class="itens" id="adm">
+          <div class="itens-menu">
+             <span class="menu-title">Cadastros</span>
+             <a class="dropdown-item" href="{{ route('company.index') }}">Empresas</a>
+             <a class="dropdown-item" href="{{ route('department.index') }}">Departamentos</a>
+             <a class="dropdown-item" href="{{ route('position.index') }}">Cargos</a>
+             <a class="dropdown-item" href="{{ route('user.index') }}">Usuários</a>
+          </div>
+          <div class="itens-menu">
+             <span class="menu-title">ADM</span>
+             <a href="">Admintrador 1</a>
+             <a href="">Admintrador 1</a>
+             <a href="">Admintrador 1</a>
+             <a href="">Admintrador 1</a>
+          </div>
+       </div>
+       <div class="itens" id="chad">
+          <div class="itens-menu">
+             <span class="menu-title">C</span>
+             <a href="">ATHUS</a>
+             <a href="">CHAD</a>
+             <a href="">CHAD</a>
+             <a href="">CHAD</a>
+          </div>
+          <div class="itens-menu">
+             <span class="menu-title">C</span>
+             <a href="">CHAD</a>
+             <a href="">CHAD</a>
+             <a href="">CHAD</a>
+             <a href="">CHAD</a>
+          </div>
+       </div>
+       <div class="itens" id="julin">
+          <div class="itens-menu">
+             <span class="menu-title">JULINN</span>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+          </div>
+          <div class="itens-menu">
+             <span class="menu-title">JULINN</span>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+          </div>
+          <div class="itens-menu">
+             <span class="menu-title">JULINN</span>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+          </div>
+          <div class="itens-menu">
+             <span class="menu-title">JULINN</span>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+          </div>
+          <div class="itens-menu">
+             <span class="menu-title">JULINN</span>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+             <a href="">julin</a>
+          </div>
+       </div>
+    </div>
  </nav>

@@ -1,43 +1,25 @@
 $(document).ready(function() {
-  $('#darkMode').click(function() {
-    const startCurrentColor = $('#mainBody').css('background-color');
-    const currentColor = $('#mainBody').css('background-color');
-    if (currentColor === 'rgb(23, 25, 26)') {
-      $('#mainBody').css('background-color', 'rgb(223, 222, 222)'); 
-    } else {
-      $('#mainBody').css('background-color', 'rgb(23, 25, 26)'); 
-    }
-  });
+    $('nav div.navigation-itens a[data-menu]').mouseenter(function() {
+        $('.itens').css('display', 'none')
+        prop = $(this).attr('data-menu')
+        $(`div#${prop}`).css('display', 'flex')
+        $('.navigation-itens-drop').slideDown()
+     
+      })
+      $('nav').mouseleave(function() {
+        $('.navigation-itens-drop').slideUp(350)
+        $('.itens').css('display', 'none')
+      })
+     
+      $('.navigation-user').mouseenter(function() {
+        $('.navigation-user-drop').slideDown().css('display', 'flex')
+      })
+      $('.navigation-user').mouseleave(function() {
+        $('.navigation-user-drop').slideUp(350)
+      })
 
-  const images = [
-    '/images/grupoRoma1.jpg',
-    '/images/grupoRoma2.jpg', 
-    '/images/grupoRoma3.jpg'
-  ];
-
-  let currentImageIndex = 0;
-  const backgroundElement = document.getElementById('dynamicBackground');
-
-  function changeBackgroundImage() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    backgroundElement.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-  }
-
-  setInterval(changeBackgroundImage, 10000); 
-
-  $('#searchInput').on('input', function() {
-    var input = $(this).val().toLowerCase();
-    $('.nav-item, .dropdown-item').hide();
-    $('.nav-item, .dropdown-item').filter(function() {
-      return $(this).text().toLowerCase().includes(input);
-    }).show();
-  });
-
-
-
-
-
-  var alertWrapper = document.querySelector('.alert-wrapper.alertMessage');
+  
+ var alertWrapper = document.querySelector('.alert-wrapper.alertMessage');
   var overlay = document.querySelector('.overlay');
   var closeButton = document.querySelector('.btn-close');
 
@@ -69,9 +51,8 @@ $(document).ready(function() {
         }
     });
 
-
-
-
+    //navbar
+    
 
 
 

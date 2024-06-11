@@ -96,7 +96,9 @@
                                 <label class="form-check-label" for="master">Master</label>
                             </div>
                           </div>
+                          <div class="card-header" style="border:none;">
                         <center><h2>Permissões</h2></center>
+                          </div>
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 @foreach ($permissions as $menu => $permissionValues)

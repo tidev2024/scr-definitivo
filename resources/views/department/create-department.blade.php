@@ -10,8 +10,13 @@
                         <form action="{{ route('department.store') }}" method="post">
                             @csrf
                                 <label for="name">Departamento:</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="">
-                            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="">
+                                @error('name')
+                           <div class="invalid-feedback">
+                                {{ $message }}
+                          </div>
+                          @enderror
+                                 <div class="d-grid gap-2 col-6 mx-auto mt-4">
                                 <button type="submit" class="btn btnWhite">Gravar</button>
                             </div>
                         </form>
@@ -21,16 +26,6 @@
         </div>
     </div>
 
-    @error('name')
-    <div class="overlay">
-        <div class="alert-wrapper alertMessage show">
-            <div class="alert alert-danger fade show" role="alert">
-                {{ $message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
-    @enderror
 
     @if (session('message'))
     <div class="overlay">
