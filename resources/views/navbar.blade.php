@@ -10,9 +10,8 @@
        </div>
        <div>
           <a href="" data-menu="adm">Administrador</a>
-          <a href="" data-menu="chad">Athus</a>
-          <a href="" data-menu="julin">é</a>
-          <a href="" data-menu="julin">Gay</a>
+         {{--  <a href="" data-menu="chad">Chad</a>
+          <a href="" data-menu="julin">Julin</a> --}}
        </div>
        <div></div>
     </div>
