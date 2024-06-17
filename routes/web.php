@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PercentageDirectSalesCommissionController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,14 @@ Route::get('/usuarios/alterar-senha', [UserController::class, 'updatePassword'])
 ->name('user.updatePassword');
 Route::post('/usuarios/alterar-senha', [UserController::class, 'storeUpdatedPassword'])
 ->name('user.storeUpdatedPassword');
+
+Route::resource('percentual-comissao-vd', PercentageDirectSalesCommissionController::class)
+->only(['index', 'create', 'store'])
+->names([
+    'index' => 'percentCommission.index',
+    'create' => 'percentCommission.create',
+    'store' => 'percentCommission.store'
+]);
 
 Route::fallback(function () {
     return redirect()->route('login.index');

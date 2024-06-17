@@ -31,5 +31,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'read-user', 'menu' => 'Usuario', 'short_description' => 'Vizualizar usuário']);
         Permission::create(['name' => 'create-user', 'menu' => 'Usuario', 'short_description' => 'Criar usuário']);
         Permission::create(['name' => 'update-user', 'menu' => 'Usuario', 'short_description' => 'Atualizar usuário']);
+        //PORCENTAGEM DE COMISSAO
+        Permission::create(['name' => 'read-percentageCommission', 'menu' => 'Percentuais comissão VD', 'short_description' => 'Vizualizar porcentagens de comissão de VD']);
+        Permission::create(['name' => 'create-percentageCommission', 'menu' => 'Percentuais comissão VD', 'short_description' => 'Criar porcentagens de comissão de VD']);
     }
 }
