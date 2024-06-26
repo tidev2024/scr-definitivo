@@ -11,5 +11,5 @@ class ImportData extends Model
 
     protected $table = 'import_data';
 
-    protected $fillable = ['chassi', 'commission_value'];
+    protected $fillable = ['chassi', 'commission_value', 'income_tax'];
 }
