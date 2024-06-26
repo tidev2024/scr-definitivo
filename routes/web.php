@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\InvoicingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PercentageDirectSalesCommissionController;
@@ -75,6 +76,12 @@ Route::resource('percentual-comissao-vd', PercentageDirectSalesCommissionControl
     'create' => 'percentCommission.create',
     'store' => 'percentCommission.store'
 ]);
+
+Route::get('/faturamento/upload-arquivo-b2b', [InvoicingController::class, 'uploadFileB2B'])
+->name('invoicing.uploadFileB2B');
+
+Route::post('/faturamento/upload-arquivo-b2b', [InvoicingController::class, 'processFileB2B'])
+->name('invoicing.processFileB2B');
 
 Route::fallback(function () {
     return redirect()->route('login.index');
