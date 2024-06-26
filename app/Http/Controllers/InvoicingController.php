@@ -56,7 +56,7 @@ class InvoicingController extends Controller implements HasMiddleware
         foreach($records as $record) {
             $chassiSerie = $record[5];
             $NFMotadora = $record[7];
-            $valorComissao = str_replace(',', '.', str_replace('.', '', $record[8]));
+            $valorComissao = str_replace(',', '.', str_replace('.', '', $record[11]));
             $data = DB::connection('dealernet')
                 ->select('SELECT
                         top 1
