@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PercentageDirectSalesCommissionController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FileProcessingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -86,3 +87,5 @@ Route::post('/faturamento/upload-arquivo-b2b', [InvoicingController::class, 'pro
 Route::fallback(function () {
     return redirect()->route('login.index');
 });
+
+Route::view('/profile/user', 'user.profile-user')->name('profile.user');

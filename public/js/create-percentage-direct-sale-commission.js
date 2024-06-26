@@ -11,17 +11,17 @@ $(document).ready(function () {
         lastRowNumber = $(this).attr('data-row-number')
         $(this).attr('data-row-number', Number(lastRowNumber) + 1)
         $(this).parent().before(`
-            <div class="col-sm-4" id="percent_to_${lastRowNumber}">
-                <input type="text" class="form-control" name="percent_to_${lastRowNumber}">
-            </div>
             <div class="col-sm-4" id="percent_from_${lastRowNumber}">
                 <input type="text" class="form-control" name="percent_from_${lastRowNumber}">
+            </div>
+            <div class="col-sm-4" id="percent_to_${lastRowNumber}">
+                <input type="text" class="form-control" name="percent_to_${lastRowNumber}">
             </div>
             <div class="col-sm-3" id="seller_percentage_${lastRowNumber}">
                 <input type="text" class="form-control" name="seller_percentage_${lastRowNumber}">
             </div>
             <div class="col-sm-1" id="remove_button_${lastRowNumber}">
-                <button type="button" class="btn btn-primary" data-row="${lastRowNumber}">
+                <button type="button" class="btn btnOrange" data-row="${lastRowNumber}">
                 <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>

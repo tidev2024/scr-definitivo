@@ -27,7 +27,7 @@ class PercentageDirectSalesCommissionController extends Controller implements Ha
     public function index()
     {
         $percentages = $this->percentageDirectSalesCommission
-            ->orderBy('percent_to', 'asc')->get();
+            ->orderBy('seller_percentage', 'asc')->get();
         return view('percentage-direct-sale-commission.index-percentage-direct-sale-commission', [
             'percentageDirectSalesCommission' => $percentages
         ]);

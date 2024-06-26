@@ -1,19 +1,24 @@
 <nav class="navigation-bar">
     <div class="navigation-user">
-          <a href="">{{ auth()->user()->name }}</a> |
-          <a href="">Perfil</a> |
-          <a href="{{ route('logout') }}">Logout</a>
+        <a href="" target="_blank">{{ auth()->user()->name }}</a> |
+        <a href="{{ route('profile.user') }}">Perfil</a> |
+        <a href="{{ route('logout') }}">Logout</a>
     </div>
+    
     <div class="navigation-itens">
        <div>
           Grupo Roma
        </div>
-       <div>
-          <a href="" data-menu="adm">Administrador</a>
-         {{--  <a href="" data-menu="chad">Chad</a>
-          <a href="" data-menu="julin">Julin</a> --}}
+       <div class="nav-itens-positions">
+         <div>
+            <a href="" data-menu="adm">Administrador</a>
+         </div>
+         <div>
+           <a href="" data-menu="vendas">Vendas</a>
+        </div>
        </div>
-       <div></div>
+      <div></div>
+
     </div>
     <div class="navigation-itens-drop">
        <div class="itens" id="adm">
@@ -23,66 +28,14 @@
              <a class="dropdown-item" href="{{ route('department.index') }}">Departamentos</a>
              <a class="dropdown-item" href="{{ route('position.index') }}">Cargos</a>
              <a class="dropdown-item" href="{{ route('user.index') }}">Usuários</a>
-          </div>
-          <div class="itens-menu">
-             <span class="menu-title">ADM</span>
-             <a href="">Admintrador 1</a>
-             <a href="">Admintrador 1</a>
-             <a href="">Admintrador 1</a>
-             <a href="">Admintrador 1</a>
+             <a class="dropdown-item" href="{{ route('percentCommission.index') }}">Cadastros de percentual de comissão</a>
           </div>
        </div>
-       <div class="itens" id="chad">
+       <div class="itens" id="vendas">
           <div class="itens-menu">
-             <span class="menu-title">C</span>
-             <a href="">ATHUS</a>
-             <a href="">CHAD</a>
-             <a href="">CHAD</a>
-             <a href="">CHAD</a>
-          </div>
-          <div class="itens-menu">
-             <span class="menu-title">C</span>
-             <a href="">CHAD</a>
-             <a href="">CHAD</a>
-             <a href="">CHAD</a>
-             <a href="">CHAD</a>
-          </div>
-       </div>
-       <div class="itens" id="julin">
-          <div class="itens-menu">
-             <span class="menu-title">JULINN</span>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-          </div>
-          <div class="itens-menu">
-             <span class="menu-title">JULINN</span>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-          </div>
-          <div class="itens-menu">
-             <span class="menu-title">JULINN</span>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-          </div>
-          <div class="itens-menu">
-             <span class="menu-title">JULINN</span>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-          </div>
-          <div class="itens-menu">
-             <span class="menu-title">JULINN</span>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
-             <a href="">julin</a>
+             <span class="menu-title">Relatórios</span>
+             <a href="">Comissão de Venda Direta (VD)</a>
+             <a href="">Comissão de Veículos Novos (VN)</a>
           </div>
        </div>
     </div>

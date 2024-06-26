@@ -40,6 +40,11 @@ nav a:hover {
    color: black;
    background-color: white;
 }
+.nav-itens-positions{
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+}
  
 .navigation-itens-drop {
    width: 100vw;
