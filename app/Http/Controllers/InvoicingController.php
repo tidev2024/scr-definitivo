@@ -55,6 +55,7 @@ class InvoicingController extends Controller implements HasMiddleware
         // VENDEDOR, CHASSI, NF MONTADORA, VALOR COMISSAO, CLIENTE
         foreach($records as $record) {
             $chassiSerie = $record[5];
+            $impostoRenda = str_replace(',', '.', str_replace('.', '', $record[9]));
             $NFMotadora = $record[7];
             $valorComissao = str_replace(',', '.', str_replace('.', '', $record[11]));
             $data = DB::connection('dealernet')
@@ -77,7 +78,7 @@ class InvoicingController extends Controller implements HasMiddleware
             }
             $informacaoVenda = $data[0];
             try {
-                $this->importData->create(['chassi' => $informacaoVenda->chassi, 'commission_value' => $valorComissao]);
+                $this->importData->create(['chassi' => $informacaoVenda->chassi, 'commission_value' => $valorComissao, 'income_tax' => $impostoRenda]);
             } catch (UniqueConstraintViolationException $th) {
                 //throw $th;
             }
@@ -87,6 +88,7 @@ class InvoicingController extends Controller implements HasMiddleware
                     'cliente' => $informacaoVenda->cliente,
                     'nf_montadora' => $NFMotadora,
                     'valor_comissao' => $valorComissao,
+                    'income_tax' => $impostoRenda,
                 ];
             } else {
                 $comissaoVendas[$informacaoVenda->vendedor][] = [
@@ -94,6 +96,7 @@ class InvoicingController extends Controller implements HasMiddleware
                     'cliente' => $informacaoVenda->cliente,
                     'nf_montadora' => $NFMotadora,
                     'valor_comissao' => $valorComissao,
+                    'income_tax' => $impostoRenda,
                 ];
             }
         }

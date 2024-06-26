@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('chassi')->unique();
             $table->float('commission_value', 2);
+            $table->float('income_tax', 2);
             $table->timestamps();
         });
     }
