@@ -1,6 +1,6 @@
 @extends('default.layout')
 @section('content')
-<div class="container mt-5">
+<div class="container">
     <div class="card">
         <div class="card-header">
             <center><h2>Cadastro de Percentual de Comissão</h2></center>

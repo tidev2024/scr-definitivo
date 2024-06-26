@@ -28,7 +28,8 @@
              <a class="dropdown-item" href="{{ route('department.index') }}">Departamentos</a>
              <a class="dropdown-item" href="{{ route('position.index') }}">Cargos</a>
              <a class="dropdown-item" href="{{ route('user.index') }}">Usuários</a>
-             <a class="dropdown-item" href="{{ route('percentCommission.index') }}">Cadastros de percentual de comissão</a>
+             <a class="dropdown-item" href="{{ route('percentCommission.index') }}">Percentual de comissão</a>
+             <a class="dropdown-item" href="{{ route('invoicing.processFileB2B') }}">Upload de arquivo de Comissão</a>
           </div>
        </div>
        <div class="itens" id="vendas">

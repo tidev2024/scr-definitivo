@@ -30,6 +30,10 @@ class InvoicingController extends Controller implements HasMiddleware
 
     public function processFileB2B(UploadB2BFileRequest $request)
     {
+        ini_set('memory_limit','-1');
+
+        ini_set('max_execution_time',30000);
+
         // validating successful upload
         if (!$request->file('invoicing_file')->isValid()) {
             return  redirect()->route('invoicing.uploadFileB2B')->with('message', [
