@@ -102,13 +102,13 @@
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 @foreach ($permissions as $menu => $permissionValues)
-                                    <button class="nav-link {{ ($loop->index == 0) ? 'active' : '' }}" id="nav-{{ $menu }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $menu }}" type="button" role="tab" aria-controls="nav-{{ $menu }}" aria-selected="{{ ($loop->index == 0) ? 'true' : 'false' }}">{{ $menu }}</button>
+                                    <button class="nav-link {{ ($loop->index == 0) ? 'active' : '' }}" id="nav-{{ str_replace(' ', '_', $menu) }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ str_replace(' ', '_', $menu) }}" type="button" role="tab" aria-controls="nav-{{ str_replace(' ', '_', $menu) }}" aria-selected="{{ ($loop->index == 0) ? 'true' : 'false' }}">{{ $menu }}</button>
                                 @endforeach
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             @foreach ($permissions as $menu => $permissionValues)
-                                <div class="tab-pane fade {{ ($loop->index == 0) ? 'active show' : '' }}" id="nav-{{ $menu }}" role="tabpanel" aria-labelledby="nav-{{ $menu }}-tab" tabindex="{{ $loop->index }}">
+                                <div class="tab-pane fade {{ ($loop->index == 0) ? 'active show' : '' }}" id="nav-{{ str_replace(' ', '_', $menu) }}" role="tabpanel" aria-labelledby="nav-{{ str_replace(' ', '_', $menu) }}-tab" tabindex="{{ $loop->index }}">
                                     @foreach ($permissionValues as $id => $value)
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" name="permission_id[]" value="{{ $id }}">
