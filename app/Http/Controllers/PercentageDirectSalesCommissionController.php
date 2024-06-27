@@ -6,7 +6,6 @@ use App\Models\PercentageDirectSalesCommission;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use PhpParser\Node\Expr\FuncCall;
 
 class PercentageDirectSalesCommissionController extends Controller implements HasMiddleware
 {

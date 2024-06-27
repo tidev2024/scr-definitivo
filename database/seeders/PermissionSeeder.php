@@ -34,5 +34,7 @@ class PermissionSeeder extends Seeder
         //PORCENTAGEM DE COMISSAO
         Permission::create(['name' => 'read-percentageCommission', 'menu' => 'Percentuais comissão VD', 'short_description' => 'Vizualizar porcentagens de comissão de VD']);
         Permission::create(['name' => 'create-percentageCommission', 'menu' => 'Percentuais comissão VD', 'short_description' => 'Criar porcentagens de comissão de VD']);
+        // UPLOAD ARQUIVO COMISSÃO
+        Permission::create(['name' => 'upload-comissionFile', 'menu' => 'Faturamento', 'short_description' => 'Upload arquivo de comissão VD']);
     }
 }

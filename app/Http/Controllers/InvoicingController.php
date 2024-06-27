@@ -19,7 +19,7 @@ class InvoicingController extends Controller implements HasMiddleware
     {
         return [
             'userIsAuthenticate',
-            // new Middleware('checkPermission:read-department', only: ['index'])
+            new Middleware('checkPermission:upload-comissionFile', only: ['uploadFileB2B', 'processFileB2B'])
         ];
     }
 
