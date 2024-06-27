@@ -10,8 +10,8 @@
       <div class="card-body">
          <form action="{{ route('invoicing.processFileB2B') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="invoicing_file">Escolha um arquivo:</label>
-            <input type="file" class="form-control" id="invoicing_file" name="invoicing_file">
+            <label for="invoicing_file">Escolha o arquivo CSV:</label>
+            <input type="file" class="form-control" id="invoicing_file" name="invoicing_file" accept=".csv">
             @error('invoicing_file')
             {{ $message }}
             @enderror
