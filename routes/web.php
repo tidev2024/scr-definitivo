@@ -68,6 +68,7 @@ Route::get('/usuarios/alterar-senha', [UserController::class, 'updatePassword'])
 ->name('user.updatePassword');
 Route::post('/usuarios/alterar-senha', [UserController::class, 'storeUpdatedPassword'])
 ->name('user.storeUpdatedPassword');
+Route::get('/usuario/perfil', [UserController::class, 'profile'])->name('user.profile');
 
 Route::resource('percentual-comissao-vd', PercentageDirectSalesCommissionController::class)
 ->only(['index', 'create', 'store'])
@@ -86,5 +87,3 @@ Route::post('/faturamento/upload-arquivo-b2b', [InvoicingController::class, 'pro
 Route::fallback(function () {
     return redirect()->route('login.index');
 });
-
-Route::view('/profile/user', 'user.profile-user')->name('profile.user');

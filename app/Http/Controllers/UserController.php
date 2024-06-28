@@ -139,4 +139,9 @@ class UserController extends Controller implements HasMiddleware
             'message' => 'Senha digitada não é a mesma que a senha atual!'
         ]);
     }
+
+    public function profile()
+    {
+        return view('user.profile-user');
+    }
 }

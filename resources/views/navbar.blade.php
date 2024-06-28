@@ -1,13 +1,13 @@
 <nav class="navigation-bar">
     <div class="navigation-user">
-        <a href="" target="_blank">{{ auth()->user()->name }}</a> |
-        <a href="{{ route('profile.user') }}">Perfil</a> |
+        <a href="">{{ auth()->user()->name }}</a> |
+        <a href="{{ route('user.profile') }}">Perfil</a> |
         <a href="{{ route('logout') }}">Logout</a>
     </div>
-    
+
     <div class="navigation-itens">
        <div>
-          Grupo Roma
+         <a href="{{ route('home') }}">Grupo Roma</a>
        </div>
        <div class="nav-itens-positions">
          <div>
