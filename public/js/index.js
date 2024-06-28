@@ -49,3 +49,10 @@ $(document).ready(function() {
       }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.formLoadingIcon');
+  form.addEventListener('submit', function () {
+      document.querySelector('.loadingIcon').style.display = 'block';
+  });
+});

@@ -30,7 +30,7 @@ class UploadB2BFileRequest extends FormRequest
     {
         return [
             'invoicing_file' => [
-                'required' => 'Selecione um arquivo antes de enviar',
+                'required' => 'Selecione um arquivo antes de enviar!',
                 'mimes' => 'O arquivo deve ser do tipo: csv'
             ]
         ];
@@ -38,10 +38,14 @@ class UploadB2BFileRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'invoicing_file_extension' => strtolower($this->file('invoicing_file')->getClientOriginalExtension()),
-        ]);
+        if ($this->hasFile('invoicing_file')) {
+            $this->merge([
+                'invoicing_file_extension' => strtolower($this->file('invoicing_file')->getClientOriginalExtension()),
+            ]);
+        }
     }
+
+
 
     public function withValidator($validator)
     {
